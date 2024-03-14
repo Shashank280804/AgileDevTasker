@@ -109,6 +109,7 @@ function App() {
         </Route>
 
         <Route path='/log-in' element={<Login />} />
+        <Route path='/sign-in' element={<Signin />} />
       </Routes>
 
       <Toaster richColors />
