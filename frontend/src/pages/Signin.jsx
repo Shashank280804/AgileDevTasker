@@ -5,7 +5,7 @@ import Textbox from "../components/Textbox";
 import Button from "../components/Button";
 import { useSelector } from "react-redux";
 
-const Login = () => {
+const Signin = () => {
   const { user } = useSelector((state) => state.auth);
   const {
     register,
@@ -16,22 +16,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const submitHandler = async (data) => {
-    // Dummy username and password
-    const dummyUsername = "akash@123";
-    const dummyPassword = "akash";
-  
-    // Check if entered username and password match the dummy values
-    if (data.email === dummyUsername && data.password === dummyPassword) {
-      // Navigate to dashboard if credentials are correct
-      navigate("/dashboard");
-    } else {
-      // Set login error if credentials are incorrect
-      setLoginError(true);
-    }
+    console.log("submit");
+    navigate("/dashboard");
   };
 
   useEffect(() => {
-    user && navigate("/dashboard");
+    user && navigate("/sign-in");
   }, [user]);
 
   return (
@@ -62,14 +52,25 @@ const Login = () => {
           >
             <div className=''>
               <p className='text-blue-600 text-3xl font-bold text-center'>
-                Welcome back!
+                Register
               </p>
               <p className='text-center text-base text-gray-700 '>
-                Keep all your credential safge.
+                Enter your details
               </p>
             </div>
 
             <div className='flex flex-col gap-y-5'>
+            <Textbox
+                placeholder='Enter Name'
+                type='name'
+                name='name'
+                label='Name'
+                className='w-full rounded-full'
+                register={register("name", {
+                  required: "name is required!",
+                })}
+                error={errors.name ? errors.name.message : ""}
+              />
               <Textbox
                 placeholder='email@example.com'
                 type='email'
@@ -78,6 +79,17 @@ const Login = () => {
                 className='w-full rounded-full'
                 register={register("email", {
                   required: "Email Address is required!",
+                })}
+                error={errors.email ? errors.email.message : ""}
+              />
+              <Textbox
+                placeholder='Eg: Frontend, mongoDB, etc..'
+                type='Designation'
+                name='Designation'
+                label='Designation'
+                className='w-full rounded-full'
+                register={register("Designation", {
+                  required: "Designation is required!",
                 })}
                 error={errors.email ? errors.email.message : ""}
               />
@@ -92,6 +104,7 @@ const Login = () => {
                 })}
                 error={errors.password ? errors.password.message : ""}
               />
+              
 
               <span className='text-sm text-gray-500 hover:text-blue-600 hover:underline cursor-pointer'>
                 Forget Password?
@@ -110,4 +123,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;
