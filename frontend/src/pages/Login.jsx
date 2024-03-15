@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    user && navigate("/dashboard");
+    user && navigate("/log-in");
   }, [user]);
 
   return (
