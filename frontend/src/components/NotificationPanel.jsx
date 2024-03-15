@@ -73,7 +73,7 @@ const NotificationPanel = () => {
   return (
     <>
       <Popover className='relative'>
-        <Popover.Button className='inline-flex items-center outline-none'>
+        {/* <Popover.Button className='inline-flex items-center outline-none'>
           <div className='w-8 h-8 flex items-center justify-center text-gray-800 relative'>
             <IoIosNotificationsOutline className='text-2xl' />
             {data?.length > 0 && (
@@ -82,7 +82,7 @@ const NotificationPanel = () => {
               </span>
             )}
           </div>
-        </Popover.Button>
+        </Popover.Button> */}
 
         <Transition
           as={Fragment}

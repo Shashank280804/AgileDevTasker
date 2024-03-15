@@ -81,10 +81,23 @@ const deleteTask = async (req, res) => {
     }
 };
 
+const getTasksCount = async (req, res) => {
+    try {
+        const count = await Task.countDocuments({});
+        res.json({ count });
+    } catch (error) {
+        console.error("Error fetching tasks count:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
+
 module.exports = {
     createTask,
     getTaskById,
     getAllTasks,
     updateTask,
-    deleteTask
+    deleteTask,
+    getTasksCount
 };

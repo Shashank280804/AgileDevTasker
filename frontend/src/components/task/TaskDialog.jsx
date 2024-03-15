@@ -10,6 +10,8 @@ import AddTask from "./AddTask";
 import AddSubTask from "./AddSubTask";
 import ConfirmatioDialog from "../Dialogs";
 
+
+
 const TaskDialog = ({ task }) => {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -18,15 +20,42 @@ const TaskDialog = ({ task }) => {
   const navigate = useNavigate();
 
   const duplicateHandler = () => {};
-  const deleteClicks = () => {};
+  // const deleteClicks = () => {};
+
+  const deleteClicks = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/tasks/${task._id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+          // You may need to include additional headers like authorization token if needed
+        }
+      });
+  
+      if (!response.ok) {
+        // Handle error responses from the server
+        const errorMessage = await response.text();
+        throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorMessage}`);
+      }
+  
+      // Handle success response, for example, you can reload the page or update the UI accordingly
+      // For example, you can redirect to a different page after deleting the task
+      navigate('/tasks'); // Assuming you have a route for displaying tasks list
+    } catch (error) {
+      console.error('Error deleting task:', error);
+      // Handle error in a way appropriate for your application, e.g., show an error message to the user
+    }
+  };
+
+  
   const deleteHandler = () => {};
 
   const items = [
-    {
-      label: "Open Task",
-      icon: <AiTwotoneFolderOpen className='mr-2 h-5 w-5' aria-hidden='true' />,
-      onClick: () => navigate(`/task/${task._id}`),
-    },
+    // {
+    //   label: "Open Task",
+    //   icon: <AiTwotoneFolderOpen className='mr-2 h-5 w-5' aria-hidden='true' />,
+    //   onClick: () => navigate(`/task/${task._id}`),
+    // },
     {
       label: "Edit",
       icon: <MdOutlineEdit className='mr-2 h-5 w-5' aria-hidden='true' />,
