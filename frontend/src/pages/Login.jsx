@@ -16,18 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const submitHandler = async (data) => {
-    // Dummy username and password
-    const dummyUsername = "akash@123";
-    const dummyPassword = "akash";
-  
-    // Check if entered username and password match the dummy values
-    if (data.email === dummyUsername && data.password === dummyPassword) {
-      // Navigate to dashboard if credentials are correct
-      navigate("/dashboard");
-    } else {
-      // Set login error if credentials are incorrect
-      setLoginError(true);
-    }
+    console.log("submit");
   };
 
   useEffect(() => {

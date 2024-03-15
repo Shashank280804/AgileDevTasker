@@ -524,41 +524,57 @@ export const summary = {
   users: [
     {
       _id: "65c5f27fb5204a81bde86833",
-      name: "New User",
-      title: "Designer",
+      name: "Shwetas Dhake",
+      title: "Full-Stack Developer",
+      role: "Developer",
+      isActive: true,
+      createdAt: "2024-02-09T09:38:07.765Z",
+    },
+    {
+      _id: "65c5f27fb5204a81bde86833",
+      name: "Shashank Patil",
+      title: "Backend Developer",
       role: "Developer",
       isActive: true,
       createdAt: "2024-02-09T09:38:07.765Z",
     },
     {
       _id: "65c3176a0fd860f958baa099",
-      name: "Emily Wilson",
-      title: "Data Analyst",
+      name: "Akash Nalwade",
+      title: "Backend Developer",
       role: "Analyst",
       isActive: true,
       createdAt: "2024-02-07T05:38:50.816Z",
     },
     {
       _id: "65c317360fd860f958baa08e",
-      name: "Alex Johnson",
-      title: "UX Designer",
-      role: "Designer",
+      name: "Aditya Ozalwar",
+      title: "Frontend Developer",
+      role: "Developer",
       isActive: true,
       createdAt: "2024-02-07T05:37:58.862Z",
     },
     {
       _id: "65c30b96e639681a13def0b5",
-      name: "Jane Smith",
-      title: "Product Manager",
-      role: "Manager",
+      name: "Atharva",
+      title: "UX Designer",
+      role: "Designer",
       isActive: true,
       createdAt: "2024-02-07T04:48:22.519Z",
     },
     {
       _id: "65c202d4aa62f32ffd1303cc",
-      name: "Codewave Asante",
-      title: "Administrator",
-      role: "Admin",
+      name: "Prajjwal Sonaje",
+      title: "Frontend Developer",
+      role: "Designer",
+      createdAt: "2024-02-06T09:58:44.794Z",
+      isActive: true,
+    },
+    {
+      _id: "65c202d4aa62f32ffd1303cc",
+      name: "Vipul Pawar",
+      title: "UX Designer",
+      role: "Designer",
       createdAt: "2024-02-06T09:58:44.794Z",
       isActive: true,
     },
@@ -589,47 +605,24 @@ export const chartData = [
   },
 ];
 
+
+
+
+
+
+
+
+
+
+
 export const tasks = [
   {
     _id: "65c5f12ab5204a81bde866a9",
-    title: "Test task",
+    title: "Test taskssdcdsdvd",
     date: "2024-02-09T00:00:00.000Z",
     priority: "high",
     stage: "todo",
-    assets: [
-      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707471138863original-a005132062ca5bafc505c4c74f0e1865.jpg?alt=media&token=55f909f2-7f05-42f3-af4f-dc7f87cdea1d",
-      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707471144712PsZch9E1_400x400.jpg?alt=media&token=7ce62c7e-c240-4032-83c6-bb6c9cdc0d4b",
-    ],
-    team: [
-      {
-        _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
-        title: "Administrator",
-        email: "admin@gmail.com",
-      },
-      {
-        _id: "65c30b96e639681a13def0b5",
-        name: "Jane Smith",
-        title: "Product Manager",
-        email: "jane.smith@example.com",
-      },
-      {
-        _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
-        title: "UX Designer",
-        email: "alex.johnson@example.com",
-      },
-    ],
-    isTrashed: false,
-    activities: [],
-    subTasks: [
-      {
-        title: "Task manager youtube tutorial",
-        date: "2024-02-09T00:00:00.000Z",
-        tag: "tutorial",
-        _id: "65c5f153b5204a81bde866c8",
-      },
-    ],
+
     createdAt: "2024-02-09T09:32:26.574Z",
     updatedAt: "2024-02-09T09:36:53.339Z",
     __v: 1,
@@ -1098,6 +1091,25 @@ export const tasks = [
     __v: 2,
   },
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const user = {
   _id: "662f32ffd1303cc",
