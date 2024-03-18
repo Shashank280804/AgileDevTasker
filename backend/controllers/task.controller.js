@@ -92,6 +92,35 @@ const getTasksCount = async (req, res) => {
 };
 
 
+const getCompletedTasksCount = async (req, res) => {
+    try {
+        const count = await Task.countDocuments({ stage: 'completed' });
+        res.json({ count });
+    } catch (error) {
+        console.error("Error fetching completed tasks count:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+const getInProgressTasksCount = async (req, res) => {
+    try {
+        const count = await Task.countDocuments({ stage: 'in progress' });
+        res.json({ count });
+    } catch (error) {
+        console.error("Error fetching in progress tasks count:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+const getTodoTasksCount = async (req, res) => {
+    try {
+        const count = await Task.countDocuments({ stage: 'todo' });
+        res.json({ count });
+    } catch (error) {
+        console.error("Error fetching todo tasks count:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
 
 module.exports = {
     createTask,
@@ -99,5 +128,9 @@ module.exports = {
     getAllTasks,
     updateTask,
     deleteTask,
-    getTasksCount
+    getTasksCount,
+    getCompletedTasksCount,
+    getInProgressTasksCount,
+    getTodoTasksCount
 };
+

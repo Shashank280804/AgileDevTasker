@@ -43,11 +43,11 @@ const linkData = [
     link: "team",
     icon: <FaUsers />,
   },
-  {
-    label: "Trash",
-    link: "trashed",
-    icon: <FaTrashAlt />,
-  },
+  // {
+  //   label: "Trash",
+  //   link: "trashed",
+  //   icon: <FaTrashAlt />,
+  // },
 ];
 
 const Sidebar = () => {

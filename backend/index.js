@@ -4,9 +4,9 @@ require("dotenv").config(); // To load environment variables from .env file
 
 const app = express();
 const port = process.env.PORT || 3000;
-const cors = require('cors');
+const cors = require("cors");
 
-const userRouter = require("./routers/user");
+const userRouter = require("./routers/user.route");
 const taskRouter = require("./routers/task.route");
 
 // MongoDB Atlas connection URI from environment variable
@@ -18,11 +18,17 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 });
 
-// Allow all origins (not recommended for production)
-app.use(cors());
+// Allow requests from specific origins with credentials
+const allowedOrigins = ['http://localhost:3000']; // Add other origins as needed
 
-// Or allow specific origin (replace 'http://localhost:3000' with your frontend URL)
-app.use(cors({ origin: 'http://localhost:3000' }));
+// CORS middleware configuration
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true, // Allow credentials (cookies, authorization headers)
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
 const db = mongoose.connection;
 
@@ -34,7 +40,6 @@ db.once("open", () => {
 db.on("error", (error) => {
   console.error("MongoDB connection error:", error);
 });
-
 
 // Middleware
 app.use(express.json());

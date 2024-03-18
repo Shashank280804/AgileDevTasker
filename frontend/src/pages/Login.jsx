@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Textbox from "../components/Textbox";
 import Button from "../components/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios"; // Import axios for making HTTP requests
 
 const Login = () => {
   const { user } = useSelector((state) => state.auth);
@@ -13,15 +14,32 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const submitHandler = async (data) => {
-    console.log("submit");
+    try {
+      // Make a POST request to the backend /signin route
+      const response = await axios.post("http://localhost:5000/signin", {
+        email: data.email,
+        password: data.password
+      });
+
+      // Upon successful login, store the token in Redux state or local storage
+      const token = response.data.token;
+      dispatch({ type: "LOGIN_SUCCESS", payload: token });
+
+      // Redirect the user to the desired page, e.g., homepage
+      navigate("/");
+    } catch (error) {
+      // Handle login errors, e.g., display error message to the user
+      console.error("Login error:", error.response.data.message);
+    }
   };
 
-  useEffect(() => {
-    user && navigate("/log-in");
-  }, [user]);
+  // useEffect(() => {
+  //   user && navigate("/"); // Redirect if user is already logged in
+  // }, [user, navigate]);
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center flex-col lg:flex-row bg-[#f3f4f6]'>

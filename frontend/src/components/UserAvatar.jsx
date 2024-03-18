@@ -1,8 +1,9 @@
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'; // Importing useSelector and useDispatch
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { FaUser, FaUserLock } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getInitials } from "../utils";
 
@@ -13,8 +14,26 @@ const UserAvatar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const logoutHandler = () => {
-    console.log("logout");
+  const logoutHandler = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/signout', {
+        method: 'POST',
+        credentials: 'include', // Include credentials for the server to clear the cookie
+      });
+
+      if (response.ok) {
+        // Clear any user data in the frontend (e.g., Redux state)
+        // dispatch(/* action to clear user data */);
+        // Redirect the user to the login page or any other appropriate page
+        navigate('/log-in');
+      } else {
+        // Handle unsuccessful logout
+        console.error('Logout failed:', response.statusText);
+      }
+    } catch (error) {
+      // Handle network errors
+      console.error('Logout failed:', error.message);
+    }
   };
 
   return (

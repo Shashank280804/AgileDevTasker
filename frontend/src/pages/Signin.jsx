@@ -21,7 +21,7 @@ const Signin = () => {
   };
 
   useEffect(() => {
-    user && navigate("/sign-in");
+    user && navigate("/test");
   }, [user]);
 
   return (
