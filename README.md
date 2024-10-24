@@ -6,7 +6,8 @@ Dynamic Task Assignment in Remote Teams is a comprehensive web application metic
 # Why/Problem?
 In the dynamic landscape of remote work, effective task management serves as the cornerstone of team success. Conventional task tracking methods often fall short in remote settings, leading to inefficiencies and errors. Dynamic Task Assignment in Remote Teams is purpose-built to tackle these challenges head-on by offering a centralized platform for seamless task management, fostering collaboration, and enhancing workflow efficiency.
 
-#Implementation
+# Implementation
+
 ![image](https://github.com/user-attachments/assets/84af36e1-a644-478a-bb56-6ec79bffdcf3)
 
 ![image](https://github.com/user-attachments/assets/4e3c9a8b-adaa-4ab9-ae47-0b73a1190a59)
