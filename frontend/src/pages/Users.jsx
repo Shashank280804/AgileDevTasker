@@ -20,13 +20,17 @@ const Users = () => {
   }, []);
 
   const handleAddUser = (newUser) => {
-    // Add a new user to the local state
+    // Add a new user to the local state with default 'isActive' set to true
     setUsers((prevUsers) => {
-      const updatedUsers = [...prevUsers, { ...newUser, _id: Date.now() }];
-      localStorage.setItem('users', JSON.stringify(updatedUsers)); // Save to local storage
+      const updatedUsers = [
+        ...prevUsers,
+        { ...newUser, _id: Date.now(), isActive: true } // Default active user
+      ];
+      localStorage.setItem("users", JSON.stringify(updatedUsers)); // Save to local storage
       return updatedUsers;
     });
   };
+  
 
   const deleteHandler = () => {
     // Remove the selected user from the users list
