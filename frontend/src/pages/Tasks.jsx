@@ -24,51 +24,76 @@ const TASK_TYPE = {
 };
 
 const Tasks = () => {
-  const params = useParams();
-
-  const [selected, setSelected] = useState(0);
-  const [open, setOpen] = useState(false);
+  const { status = "" } = useParams();
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
 
-  const status = params?.status || "";
+  // Fetch tasks when the component mounts and when tasks change
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/tasks");
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/tasks"); // Replace this with your backend route to fetch tasks
-        const data = await response.json();
-        setTasks(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-        setLoading(false);
-      }
-    };
-
     fetchTasks();
-  }, []);
+  }, []); // Initial fetch on mount
+
+  useEffect(() => {
+    fetchTasks(); // Fetch tasks whenever the tasks state changes
+  }, [tasks]);
 
   // Filter tasks based on their stage
-  let filteredTasks;
-  if (status) {
-    filteredTasks = tasks.filter(task => task.stage === status);
-  } else {
-    filteredTasks = tasks;
+  const filteredTasks = status ? tasks.filter(task => task.stage === status) : tasks;
+
+  // Function to create a new task
+  const handleAddTask = async (newTask) => {
+    try {
+      const response = await fetch("http://localhost:5000/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newTask),
+      });
+      const createdTask = await response.json();
+      setTasks((prevTasks) => [...prevTasks, createdTask]);
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
+  };
+
+  // Function to delete a task
+  const handleDeleteTask = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/tasks/${id}`, { method: "DELETE" });
+      setTasks((prevTasks) => prevTasks.filter(task => task._id !== id));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="py-10">
+        <Loading />
+      </div>
+    );
   }
 
-  return loading ? (
-    <div className="py-10">
-      <Loading />
-    </div>
-  ) : (
+  return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-4">
         <Title title={status ? `${status} Tasks` : "Tasks"} />
-
         {!status && (
           <Button
-            onClick={() => setOpen(true)}
+            onClick={() => setIsAddTaskOpen(true)}
             label="Create Task"
             icon={<IoMdAdd className="text-lg" />}
             className="flex flex-row-reverse gap-1 items-center bg-blue-600 text-white rounded-md py-2 2xl:py-2.5"
@@ -76,28 +101,25 @@ const Tasks = () => {
         )}
       </div>
 
-      <Tabs tabs={TABS} setSelected={setSelected}>
+      <Tabs tabs={TABS} setSelected={setSelectedTab}>
         {!status && (
           <div className="w-full flex justify-between gap-4 md:gap-x-12 py-4">
             <TaskTitle label="To Do" className={TASK_TYPE.todo} />
-            <TaskTitle
-              label="In Progress"
-              className={TASK_TYPE["in progress"]}
-            />
+            <TaskTitle label="In Progress" className={TASK_TYPE["in progress"]} />
             <TaskTitle label="Completed" className={TASK_TYPE.completed} />
           </div>
         )}
 
-        {selected !== 1 ? (
-          <BoardView tasks={filteredTasks} />
+        {selectedTab !== 1 ? (
+          <BoardView tasks={filteredTasks} onDeleteTask={handleDeleteTask} />
         ) : (
           <div className="w-full">
-            <Table tasks={filteredTasks} />
+            <Table tasks={filteredTasks} onDeleteTask={handleDeleteTask} />
           </div>
         )}
       </Tabs>
 
-      <AddTask open={open} setOpen={setOpen} />
+      <AddTask open={isAddTaskOpen} setOpen={setIsAddTaskOpen} onAddTask={handleAddTask} />
     </div>
   );
 };

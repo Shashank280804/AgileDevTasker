@@ -1,7 +1,7 @@
 const User = require('../models/user.model.js');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const { errorHandler } = require('../utils/error.js');
+const { errorHandler } = require('../utils/error.js');
 
 const createUser = async (req, res, next) => {
     const { username, email, designation, password } = req.body;
@@ -85,9 +85,8 @@ const updateUser = async (req, res) => {
 
     try {
         const user = await User.findById(req.params.id);
-
         if (!user) {
-            return res.status(404).send();
+            return res.status(404).send({ message: "User not found" });
         }
 
         updates.forEach((update) => {
@@ -100,6 +99,7 @@ const updateUser = async (req, res) => {
         res.status(400).send(e);
     }
 };
+
 
 const deleteUser = async (req, res) => {
     try {

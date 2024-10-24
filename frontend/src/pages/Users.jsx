@@ -1,21 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../components/Title";
 import Button from "../components/Button";
 import { IoMdAdd } from "react-icons/io";
-import { summary } from "../assets/data";
 import { getInitials } from "../utils";
 import clsx from "clsx";
-import ConfirmatioDialog, { UserAction } from "../components/Dialogs";
+import ConfirmatioDialog from "../components/Dialogs";
 import AddUser from "../components/AddUser";
 
 const Users = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openAction, setOpenAction] = useState(false);
+  const [users, setUsers] = useState([]); // Local state for users
   const [selected, setSelected] = useState(null);
 
-  const userActionHandler = () => {};
-  const deleteHandler = () => {};
+  useEffect(() => {
+    // Load users from local storage on component mount
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    setUsers(storedUsers);
+  }, []);
+
+  const handleAddUser = (newUser) => {
+    // Add a new user to the local state
+    setUsers((prevUsers) => {
+      const updatedUsers = [...prevUsers, { ...newUser, _id: Date.now() }];
+      localStorage.setItem('users', JSON.stringify(updatedUsers)); // Save to local storage
+      return updatedUsers;
+    });
+  };
+
+  const deleteHandler = () => {
+    // Remove the selected user from the users list
+    setUsers((prevUsers) => {
+      const updatedUsers = prevUsers.filter((user) => user._id !== selected);
+      localStorage.setItem('users', JSON.stringify(updatedUsers)); // Save to local storage
+      return updatedUsers;
+    });
+    setOpenDialog(false);
+  };
 
   const deleteClick = (id) => {
     setSelected(id);
@@ -53,18 +74,17 @@ const Users = () => {
       </td>
 
       <td className="p-2">{user.title}</td>
-      <td className="p-2">{user.email || "user.emal.com"}</td>
+      <td className="p-2">{user.email || "user.email.com"}</td>
       <td className="p-2">{user.role}</td>
 
       <td>
         <button
-          // onClick={() => userStatusClick(user)}
           className={clsx(
             "w-fit px-4 py-1 rounded-full",
-            user?.isActive ? "bg-blue-200" : "bg-yellow-100"
+            user.isActive ? "bg-blue-200" : "bg-yellow-100"
           )}
         >
-          {user?.isActive ? "Active" : "Disabled"}
+          {user.isActive ? "Active" : "Disabled"}
         </button>
       </td>
 
@@ -80,7 +100,7 @@ const Users = () => {
           className="text-red-700 hover:text-red-500 font-semibold sm:px-0"
           label="Delete"
           type="button"
-          onClick={() => deleteClick(user?._id)}
+          onClick={() => deleteClick(user._id)}
         />
       </td>
     </tr>
@@ -90,7 +110,7 @@ const Users = () => {
     <>
       <div className="w-full md:px-1 px-0 mb-6">
         <div className="flex items-center justify-between mb-8">
-          <Title title="  Team Members" />
+          <Title title="Team Members" />
           <Button
             label="Add New User"
             icon={<IoMdAdd className="text-lg" />}
@@ -104,8 +124,8 @@ const Users = () => {
             <table className="w-full mb-5">
               <TableHeader />
               <tbody>
-                {summary.users?.map((user, index) => (
-                  <TableRow key={index} user={user} />
+                {users.map((user) => (
+                  <TableRow key={user._id} user={user} />
                 ))}
               </tbody>
             </table>
@@ -117,19 +137,13 @@ const Users = () => {
         open={open}
         setOpen={setOpen}
         userData={selected}
-        key={new Date().getTime().toString()}
+        onAddUser={handleAddUser} // Pass the function to handle new user addition
       />
 
       <ConfirmatioDialog
         open={openDialog}
         setOpen={setOpenDialog}
         onClick={deleteHandler}
-      />
-
-      <UserAction
-        open={openAction}
-        setOpen={setOpenAction}
-        onClick={userActionHandler}
       />
     </>
   );

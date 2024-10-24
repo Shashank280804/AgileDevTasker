@@ -10,7 +10,7 @@ const userRouter = require("./routers/user.route");
 const taskRouter = require("./routers/task.route");
 
 // MongoDB Atlas connection URI from environment variable
-const uri = process.env.MONGO;
+const uri = process.env.MONGO_URI;
 
 // Connect to MongoDB Atlas using Mongoose
 mongoose.connect(uri, {
