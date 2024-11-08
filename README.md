@@ -19,6 +19,7 @@ https://drive.google.com/file/d/13GIpvp7Jdf7ufbIdhIUGV29JervhfAaM/view?usp=shari
 
 ### Tasks Page:
 - This page contains all tasks assigned to the user or team.
+    
 **View Options:**
 - List View: Displays tasks in a list format, showing details such as task name, assigned member, priority, and due date.
 - Board View: Displays tasks on a board with columns for each progress stage (e.g., Todo, In Progress, Completed), allowing users to visualize and manage tasks easily.
@@ -34,6 +35,7 @@ Users can switch between List View and Board View based on their preference.
 
 ### Team Members Page:
 - Displays a list of all Team Members involved in the project.
+
 **Actions:**
 - Add: Allows new team members to be added to the project.
 - Delete: Provides the option to remove team members if they are no longer part of the team.
