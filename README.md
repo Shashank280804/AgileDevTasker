@@ -20,6 +20,7 @@ https://drive.google.com/file/d/13GIpvp7Jdf7ufbIdhIUGV29JervhfAaM/view?usp=shari
 ### Tasks Page:
 - This page contains all tasks assigned to the user or team.
 - User can create,read,update or delete the tasks.
+- User can set date,add asset related to the task.
     
 **View Options:**
 - List View: Displays tasks in a list format, showing details such as task name, assigned member, priority, and due date.
