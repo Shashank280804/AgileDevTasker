@@ -1,5 +1,46 @@
 # Dynamic Task Assignment in Remote Teams
 
+# Implementation
+https://drive.google.com/file/d/13GIpvp7Jdf7ufbIdhIUGV29JervhfAaM/view?usp=sharing
+
+## Implementation Details
+### User Signup:
+- The video begins with a user signing up to create a new account.
+- This demonstrates the user registration functionality, including the secure storage of credentials.
+
+### User Login:
+- After signing up, the user logs in using the same credentials.
+- This verifies that the authentication flow is working as intended.
+
+### Dashboard Overview:
+- After login, the dashboard is displayed, showcasing tasks categorized by their current progress status: Todo, In Progress, and Completed.
+- Each task displays its priority level (High, Medium, or Low) to help users focus on more critical tasks.
+- The dashboard also includes a list of Team Members, allowing users to quickly view all members in the project team.
+
+### Tasks Page:
+- This page contains all tasks assigned to the user or team.
+
+#### View Options:
+- List View: Displays tasks in a list format, showing details such as task name, assigned member, priority, and due date.
+- Board View: Displays tasks on a board with columns for each progress stage (e.g., Todo, In Progress, Completed), allowing users to visualize and manage tasks easily.
+Users can switch between List View and Board View based on their preference.
+
+### Completed Tasks Page:
+- This page displays all tasks that have been marked as "Completed."
+- Provides a summary of all finished work, helping users or team members track their accomplishments.
+
+### In Progress & Todo Pages:
+- Separate pages for tasks that are In Progress and Todo.
+- Each page contains tasks filtered by their current status, helping users focus on what’s ongoing and what’s planned for the future.
+
+### Team Members Page:
+- Displays a list of all Team Members involved in the project.
+- Actions:
+- Add: Allows new team members to be added to the project.
+- Delete: Provides the option to remove team members if they are no longer part of the team.
+- Edit: Enables updates to team member information, ensuring details remain current.
+
+
 # Overview
 Dynamic Task Assignment in Remote Teams is a comprehensive web application meticulously crafted to address the challenges inherent in remote team environments. Built on the robust MERN stack (MongoDB, Express.js, React, and Node.js), our platform offers an intuitive interface aimed at optimizing task assignment, tracking, and collaboration. Tailored for administrators and regular users alike, our solution provides a wealth of features to boost productivity and organizational efficiency.
 
