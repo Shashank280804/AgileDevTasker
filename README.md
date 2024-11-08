@@ -19,8 +19,7 @@ https://drive.google.com/file/d/13GIpvp7Jdf7ufbIdhIUGV29JervhfAaM/view?usp=shari
 
 ### Tasks Page:
 - This page contains all tasks assigned to the user or team.
-
-#### View Options:
+**View Options:**
 - List View: Displays tasks in a list format, showing details such as task name, assigned member, priority, and due date.
 - Board View: Displays tasks on a board with columns for each progress stage (e.g., Todo, In Progress, Completed), allowing users to visualize and manage tasks easily.
 Users can switch between List View and Board View based on their preference.
@@ -35,11 +34,10 @@ Users can switch between List View and Board View based on their preference.
 
 ### Team Members Page:
 - Displays a list of all Team Members involved in the project.
-- Actions:
+**Actions:**
 - Add: Allows new team members to be added to the project.
 - Delete: Provides the option to remove team members if they are no longer part of the team.
 - Edit: Enables updates to team member information, ensuring details remain current.
-
 
 # Overview
 Dynamic Task Assignment in Remote Teams is a comprehensive web application meticulously crafted to address the challenges inherent in remote team environments. Built on the robust MERN stack (MongoDB, Express.js, React, and Node.js), our platform offers an intuitive interface aimed at optimizing task assignment, tracking, and collaboration. Tailored for administrators and regular users alike, our solution provides a wealth of features to boost productivity and organizational efficiency.
@@ -60,10 +58,6 @@ In the dynamic landscape of remote work, effective task management serves as the
 ![image](https://github.com/user-attachments/assets/4ef1017e-4d77-43fe-a7e9-b9b530c11961)
 
 ![image](https://github.com/user-attachments/assets/8d837af2-8b4e-42df-bdfb-5d8c501fb9ee)
-
-
-
-
 
 
 ### Background
@@ -125,4 +119,4 @@ With the proliferation of remote work and geographically dispersed teams, there 
 - **Database:**
     - MongoDB for efficient and scalable data storage.
 
-Dynamic Task Assignment in Remote Teams represents a paradigm shift in remote team management, offering a cohesive solution to enhance productivity and collaboration. Leveraging cutting-edge technologies and intuitive design principles, our platform empowers teams to navigate the challenges of remote work with ease, fostering efficiency and synergy across all levels of operation.
+
